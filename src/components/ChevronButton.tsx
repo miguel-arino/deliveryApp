@@ -29,8 +29,11 @@ interface ButtonProps {
 const ChevronButton = ({ onPress }: ButtonProps) => {
   return (
     <TouchableOpacity style={styles.absolutContainer} onPress={onPress}>
-      {/* <View style={styles.shadowContainer}> */}
       <Chevron />
+
+      {/* First approach */}
+      {/* <View style={styles.shadowContainer}> */}
+      {/* <Chevron /> */}
       {/* </View> */}
     </TouchableOpacity>
   )
