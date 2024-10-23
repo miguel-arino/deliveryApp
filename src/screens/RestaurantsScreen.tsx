@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { View, StyleSheet, StatusBar } from 'react-native'
 import { getAllRestaurants } from '../services/restaurantService'
 import RestaurantList from '../components/Restaurants/ReastaurantList'
@@ -11,6 +11,7 @@ import Header from '../components/Header/Header'
 import colors from '../styles/colors'
 import GradientSeparator from '../components/GradientSeparator'
 import LoadingSpinner from '../components/LoadingSpinner'
+import { useOnce } from '~/utils/useOnce'
 
 const styles = StyleSheet.create({
   container: {
@@ -26,7 +27,7 @@ const RestaurantsScreen = () => {
   const [selectedFilters, setSelectedFilters] = useState<Filter[]>([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
+  useOnce(() => {
     const fetchRestaurants = async () => {
       try {
         const restaurantData = await getAllRestaurants()
@@ -47,7 +48,7 @@ const RestaurantsScreen = () => {
     }
 
     fetchRestaurants()
-  }, [])
+  })
 
   const handleFilterPress = (filter: Filter) => {
     setSelectedFilters((prevSelectedFilters) =>
@@ -57,14 +58,15 @@ const RestaurantsScreen = () => {
     )
   }
 
-  const filteredRestaurants =
-    selectedFilters.length > 0
+  const filteredRestaurants = useMemo(() => {
+    return selectedFilters.length > 0
       ? restaurants.filter((restaurant) =>
           selectedFilters.every((filter) =>
-            restaurant.filters.some((_filter) => _filter.id === filter.id),
-          ),
+            restaurant.filters.some((_filter) => _filter.id === filter.id)
+          )
         )
-      : restaurants
+      : restaurants;
+  }, [restaurants, selectedFilters]);
 
   if (loading) {
     return <LoadingSpinner />

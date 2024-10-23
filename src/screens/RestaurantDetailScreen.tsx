@@ -46,15 +46,11 @@ const RestaurantDetailScreen = () => {
     fetchOpenStatus()
   }, [restaurant.id])
 
-  const handleButtonPress = () => {
-    navigation.goBack()
-  }
-
   return (
     <View style={styles.container}>
       <StatusBar animated showHideTransition={'slide'} hidden />
       <Image source={{ uri: restaurant.imageUrl }} style={styles.image} />
-      <ChevronButton onPress={handleButtonPress} />
+      <ChevronButton onPress={navigation.goBack} />
       <RestaurantDetails
         restaurant={restaurant}
         loading={loading}

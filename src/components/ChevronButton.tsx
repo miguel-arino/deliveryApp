@@ -1,4 +1,4 @@
-import { TouchableOpacity, StyleSheet, View } from 'react-native'
+import { TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import { Chevron } from '../assets/Graphics'
 
@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     left: 39,
   },
 
+  // Figma object had shadow on chevron but gets warning when rendering.
   // WARN:  (ADVICE) View #805 of type RCTView has a shadow set but cannot calculate
   // shadow efficiently. Consider setting a solid background color to fix this, or
   // apply the shadow to a more specific component.
@@ -30,11 +31,6 @@ const ChevronButton = ({ onPress }: ButtonProps) => {
   return (
     <TouchableOpacity style={styles.absolutContainer} onPress={onPress}>
       <Chevron />
-
-      {/* First approach */}
-      {/* <View style={styles.shadowContainer}> */}
-      {/* <Chevron /> */}
-      {/* </View> */}
     </TouchableOpacity>
   )
 }

@@ -1,3 +1,50 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "~/*": [
+        "./*"
+      ],
+    },
+    "allowJs": true,
+    "checkJs": false,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "lib": [
+      "es6", "dom.iterable"
+    ],
+    "useDefineForClassFields": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext",
+    "outDir": "build",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "module": "commonjs",
+    "jsx": "react",
+    "typeRoots": [
+      "node_modules/@types",
+      "src/@types"
+    ],
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "./src/**/*",
+    "scripts",
+    "index.ts",
+    "./e2e/**/*.ts"
+, "e2e/jest.config.js"  ],
+  "exclude": [
+    "node_modules",
+    "./src/lib/vendor",
+    "babel.config.js",
+    "metro.config.js",
+    ".eslintrc.js",
+    "./src/assets/content.js"
+  ],
 }
