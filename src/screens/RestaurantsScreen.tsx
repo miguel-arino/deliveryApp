@@ -11,7 +11,7 @@ import Header from '../components/Header/Header'
 import colors from '../styles/colors'
 import GradientSeparator from '../components/GradientSeparator'
 import LoadingSpinner from '../components/LoadingSpinner'
-import { useOnce } from '~/utils/useOnce'
+import { useOnce } from '../utils/useOnce'
 
 const styles = StyleSheet.create({
   container: {
@@ -62,11 +62,11 @@ const RestaurantsScreen = () => {
     return selectedFilters.length > 0
       ? restaurants.filter((restaurant) =>
           selectedFilters.every((filter) =>
-            restaurant.filters.some((_filter) => _filter.id === filter.id)
-          )
+            restaurant.filters.some((_filter) => _filter.id === filter.id),
+          ),
         )
-      : restaurants;
-  }, [restaurants, selectedFilters]);
+      : restaurants
+  }, [restaurants, selectedFilters])
 
   if (loading) {
     return <LoadingSpinner />
